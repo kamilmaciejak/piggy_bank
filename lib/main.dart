@@ -1,7 +1,6 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:piggy_bank/models/login.dart';
+import 'package:piggy_bank/screens/data/shared_preferences.dart';
 import 'package:piggy_bank/screens/game.dart';
 import 'package:piggy_bank/screens/home.dart';
 import 'package:piggy_bank/screens/login.dart';
@@ -10,21 +9,23 @@ import 'package:piggy_bank/screens/settings.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 void main() {
-  final login = LoginModel();
+  getBool(prefActive).then((active) {
+    final login = LoginModel(active);
 
-  //  Timer.periodic(
-  //    const Duration(seconds: 5),
-  //        (timer) => counter.increment(),
-  //  );
+    //  Timer.periodic(
+    //    const Duration(seconds: 5),
+    //        (timer) => counter.increment(),
+    //  );
 
-  runApp(
-    ScopedModel<LoginModel>(
-      model: login,
-      child: PiggyBank(),
-    ),
-  );
+    runApp(
+      ScopedModel<LoginModel>(
+        model: login,
+        child: PiggyBank(),
+      ),
+    );
 
-  // runApp(PiggyBank());
+    // runApp(PiggyBank());
+  });
 }
 
 class PiggyBank extends StatelessWidget {

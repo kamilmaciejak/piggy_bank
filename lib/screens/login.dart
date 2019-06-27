@@ -39,9 +39,9 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future<bool> validate(String user, String password) async =>
-      getSharedPreferences().then((sharedPreferences) => user
-          == sharedPreferences.getString(prefUser) && password
-          == sharedPreferences.getString(prefPassword));
+      getSharedPreferences().then((sharedPreferences) =>
+          user == sharedPreferences.getString(prefUser) &&
+          password == sharedPreferences.getString(prefPassword));
 
   void _login(BuildContext context) {
     if (_formKey.currentState.validate()) {
@@ -76,8 +76,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   validator: validateUser,
                   onSaved: (context, user) => {},
                   onFieldSubmitted: (user) => changeFocus(
-                    context, _userFocusNode, _passwordFocusNode
-                  ),
+                        context,
+                        _userFocusNode,
+                        _passwordFocusNode,
+                      ),
                   hintText: 'User',
                   controller: _userController,
                   textInputAction: TextInputAction.next,

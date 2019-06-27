@@ -9,12 +9,12 @@ Future<SharedPreferences> getSharedPreferences() async =>
 
 Future<bool> getBool(String key) async {
   final prefs = await SharedPreferences.getInstance();
-  return prefs.getBool(key) ?? false;
+  return prefs.containsKey(key) ? prefs.getBool(key) : false;
 }
 
 Future<String> getString(String key) async {
   final prefs = await SharedPreferences.getInstance();
-  return prefs.getString(key) ?? '';
+  return prefs.containsKey(key) ? prefs.getString(key) : '';
 }
 
 void setBool(String key, bool value) async {
